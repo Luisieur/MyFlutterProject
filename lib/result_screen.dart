@@ -68,12 +68,12 @@ class EcranResultat extends StatelessWidget {
             child: Text(texte),
           ),
           background: Container(
-            color: Colors.green,
+            color: Color.fromARGB(255, 103, 175, 195),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20.0),
-            child: const Icon(
+            child: Icon(
               Icons.copy,
-              color: Color.fromARGB(255, 33, 59, 206),
+              color: Color.fromARGB(255, 222, 19, 19),
             ),
           ),
           confirmDismiss: (direction) async {
@@ -129,6 +129,10 @@ class EcranTraduction extends StatelessWidget {
   final String texteOriginal;
   final String texteTraduit;
 
+  Future<void> _partagerTexte(String texteTraduit) async {
+    await Share.share(texteTraduit);
+  }
+
   const EcranTraduction({
     Key? key,
     required this.texteOriginal,
@@ -146,9 +150,44 @@ class EcranTraduction extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Texte Original: $texteOriginal'),
-            const SizedBox(height: 16.0),
-            Text('Texte Traduit: $texteTraduit'),
+            Text(
+              'Texte Original:',
+              style: TextStyle(
+                color: Color.fromARGB(255, 135, 19, 71), // Couleur bleue
+                fontWeight: FontWeight.bold, // Texte en gras
+              ),
+            ),
+            const SizedBox(height: 16.0), // Saut de ligne
+            Text(
+              texteOriginal,
+              style: TextStyle(
+                color: const Color.fromARGB(255, 20, 21, 22), // Couleur bleue
+                fontWeight: FontWeight.bold, // Texte en gras
+              ),
+            ),
+            const SizedBox(height: 16.0), // Saut de ligne
+            Text(
+              'Texte Traduit:',
+              style: TextStyle(
+                color: Color.fromARGB(255, 229, 9, 9), // Couleur bleue
+                fontWeight: FontWeight.bold, // Texte en gras
+              ),
+            ),
+            const SizedBox(height: 16.0), // Saut de ligne
+            Text(
+              texteTraduit,
+              style: TextStyle(
+                color: Colors.blue, // Couleur bleue
+                fontWeight: FontWeight.bold, // Texte en gras
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                _partagerTexte(texteTraduit);
+              },
+              tooltip: 'Partager le texte',
+              child: const Icon(Icons.share),
+            ),
           ],
         ),
       ),
