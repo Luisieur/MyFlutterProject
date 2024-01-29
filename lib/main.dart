@@ -236,7 +236,6 @@ class _EtatEcranPrincipal extends State<EcranPrincipal>
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Padding(padding: EdgeInsets.all(15.0)),
                                 // Bouton pour scanner une image en utilisant la caméra
                                 FloatingActionButton(
                                   onPressed: _scannerImage,
